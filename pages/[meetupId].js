@@ -40,7 +40,8 @@ export async function getStaticPaths() { // reserved name function that runs at 
   client.close(); // close the connection
     
   return {
-    fallback: false, // if fallback is set to false, then the page will be generated at build time. if fallback is set to true, then the page will be generated at request time. if fallback is set to 'blocking', then the page will be generated at request time and will not show a loading state.
+    fallback: 'blocking', // if fallback is set to false, then the page will be generated at build time. if fallback is set to true, then the page will be generated at request time. if fallback is set to 'blocking', then the page will be generated at request time and will not show a loading state.
+    // if fallback is set to 'blocking', the user will not see the page until it is generated. if fallback is set to true, the user will see a loading state until the page is generated.
     paths: meetups.map(meetup => ({
       params: { meetupId: meetup._id.toString() }, // convert the _id to a string
     })),
